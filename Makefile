@@ -1,14 +1,14 @@
 .PHONY all up down clean
 
-all:	up
+all :	up
 
-up:
+up :
 	cd ./srcs && docker-compose up --build
 
-down:
+down :
 	docker-compose down && cd ..
 
-clean:	
+clean :	
 	docker stop $$(docker ps -qa)
 	docker rm $$(docker ps -qa)
 	docker rmi -f $$(docker image -qa)

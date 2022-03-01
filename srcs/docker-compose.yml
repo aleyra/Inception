@@ -2,15 +2,22 @@ version: '3'
 
 volumes:
   vol_wordpress:
-  vol_mariadb:
+  vol_db:
+#a voir pour config les volumes
 
 networks:
-  net_nginx
+  net_nginx:
+    name: net_nginx
+    driver: bridge
+#pourquoi bridge ?
 
 services:
   nginx:
     image: nginx
     container_name: nginx
+    build: ./requirements/nginx
+    depends_on:
+      - wpphp
     volumes:
       - vol_wordpress
     ports:
@@ -18,19 +25,26 @@ services:
       - "443:443"
     networks:
       - net_nginx
+    restart: always
   db:
     image: db
     container_name: db
+    build: requirements/mariadb
     volumes:
       - vol_db
-  #environnement ici mettre l'arg pour recup .env
+    env_file:
+      - .env
     ports:
       - "3306:3306"
     networks:
       - net_nginx
+    restart: always
   wpphp:
     image: wordpressphp
     container_name: wordpressphp
+    build: ./requirements/wordpress
+    depends_on:
+      - db
     volumes:
       - vol_wordpress
     ports:
@@ -38,3 +52,4 @@ services:
       - "9000:9000"
     networks:
       -net_nginx
+    restart: always

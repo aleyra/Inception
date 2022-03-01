@@ -1,0 +1,28 @@
+
+version: '3'
+
+volumes:
+  vol_nginx:
+
+networks:
+  net_nginx:
+
+services:
+  nginx:
+    image: nginx
+    container_name: nginx
+    volumes:
+      - vol_nginx:/var/www
+    ports:
+      - "8000:80"
+    networks:
+      - net_nginx
+  db:
+    image: mysql
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: truc
+    ports:
+      - "3306:3306"
+    networks:
+      - net_nginx

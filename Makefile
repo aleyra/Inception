@@ -1,4 +1,4 @@
-.PHONY all up down clean
+.PHONY: all up down clean
 
 all :	up
 

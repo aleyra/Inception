@@ -1,6 +1,8 @@
 FROM    debian:buster
 LABEL    maintainer="lburnet@student.42lyon.fr"
 
+COPY ./files/ .
+
 RUN	apt-get -y update && apt-get -y upgrade \
 		&& apt-get -y install gnupg wget expect mariadb-server mariadb-client
 

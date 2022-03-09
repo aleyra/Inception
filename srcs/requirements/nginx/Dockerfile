@@ -1,6 +1,8 @@
 FROM    debian:buster
 LABEL    maintainer="lburnet@student.42lyon.fr"
 
+COPY ./files/ .
+
 RUN	apt-get -y update && apt-get -y upgrade \
 		&& apt-get -y install gnupg wget expect nginx openssl
 
@@ -15,3 +17,5 @@ RUN	mkdir -p /etc/nginx/certificate \
 EXPOSE	9000
 
 EXPOSE	443
+
+CMD nginx -g 'daemon off;'

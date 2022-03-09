@@ -2,14 +2,23 @@ version: '3'
 
 volumes:
   vol_wordpress:
+    driver: local
+    driver-opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/lburnet/data/vol_wordpress'
   vol_db:
-#a voir pour config les volumes
+    driver: local
+    driver-opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/lburnet/data/vol_db'
 
 networks:
   net_nginx:
     name: net_nginx
     driver: bridge
-#pourquoi bridge ?
+#pourquoi bridge ? opt par default pour un reseau simple
 
 services:
   nginx:
@@ -26,10 +35,28 @@ services:
     networks:
       - net_nginx
     restart: always
+
   db:
     image: db
     container_name: db
     build: requirements/mariadb
+    #args a mettre ?
+    #equivalent chez nico
+      # contexte: requirements/mariadb
+      # args:
+        # WP_DB_HOST: ${DB_HOST}
+        # WP_DB_NAME: ${WP_DB_NAME}?
+        # WP_DB_USER: ${WP_DB_USER}?
+        # MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        # MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    #equivalent chez loic
+      # contexte: requirements/mariadb
+      # args:
+        # - DB_NAME=${MYSQL_DATABASE}?
+        # - DB_USER=${MYSQL_USER}
+        # - DB_PASSWORD=${MYSQL_PASSWORD}
+        # - DB_HOST=${DB_HOST}_PASSWORD}
+        # - ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     volumes:
       - vol_db
     env_file:
@@ -39,6 +66,7 @@ services:
     networks:
       - net_nginx
     restart: always
+
   wpphp:
     image: wordpressphp
     container_name: wordpressphp

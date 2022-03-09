@@ -39,24 +39,14 @@ services:
   db:
     image: db
     container_name: db
-    build: requirements/mariadb
-    #args a mettre ? (d'apres ton sujet ces arguments sont a mettre dans le fichier .env je crois... je me souviens qu'ils parlaient en tout cas du mot-de-passe root de la base de donnees qui ne doit pas se retrouver ici)
-    #equivalent chez nico
-      # contexte: requirements/mariadb
-      # args:
-        # WP_DB_HOST: ${DB_HOST}
-        # WP_DB_NAME: ${WP_DB_NAME}?
-        # WP_DB_USER: ${WP_DB_USER}?
-        # MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-        # MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    #equivalent chez loic
-      # contexte: requirements/mariadb
-      # args:
-        # - DB_NAME=${MYSQL_DATABASE}?
-        # - DB_USER=${MYSQL_USER}
-        # - DB_PASSWORD=${MYSQL_PASSWORD}
-        # - DB_HOST=${DB_HOST}_PASSWORD}
-        # - ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    build:
+      contexte: requirements/mariadb
+      args:
+        DB_HOST = ${DB_HOST}
+        DB_USER = ${MYSQL_USER}
+        DB_PSW = ${MYSQL_PASSWORD}
+        DB_ROOT_PWS = ${MYSQL_ROOT_PASSWORD}
+        DB_NAME =${DB_NAME}
     volumes:
       - vol_db
     env_file:

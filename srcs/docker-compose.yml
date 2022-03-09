@@ -3,13 +3,13 @@ version: '3'
 volumes:
   vol_wordpress:
     driver: local
-    driver-opts:
+    driver_opts:
       type: 'none'
       o: 'bind'
       device: '/home/lburnet/data/vol_wordpress'
   vol_db:
     driver: local
-    driver-opts:
+    driver_opts:
       type: 'none'
       o: 'bind'
       device: '/home/lburnet/data/vol_db'
@@ -40,13 +40,13 @@ services:
     image: db
     container_name: db
     build:
-      contexte: requirements/mariadb
+      context: requirements/mariadb
       args:
-        DB_HOST = ${DB_HOST}
-        DB_USER = ${MYSQL_USER}
-        DB_PSW = ${MYSQL_PASSWORD}
-        DB_ROOT_PWS = ${MYSQL_ROOT_PASSWORD}
-        DB_NAME =${DB_NAME}
+        - DB_HOST=${DB_HOST}
+        - DB_USER=${MYSQL_USER}
+        - DB_PSW=${MYSQL_PASSWORD}
+        - DB_ROOT_PSW=${MYSQL_ROOT_PASSWORD}
+        - DB_NAME=${DB_NAME}
     volumes:
       - vol_db
     env_file:
@@ -69,5 +69,5 @@ services:
       - "3306:3306"
       - "9000:9000"
     networks:
-      -net_nginx
+      - net_nginx
     restart: always

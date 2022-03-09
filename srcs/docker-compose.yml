@@ -18,7 +18,7 @@ networks:
   net_nginx:
     name: net_nginx
     driver: bridge
-#pourquoi bridge ? opt par default pour un reseau simple
+#pourquoi bridge ? opt par default pour un reseau simple (Reseau simple ? ça veut dire que tu donnes le droit a ce réseau d'acceder a internet a partir de ta machine physique)
 
 services:
   nginx:
@@ -40,7 +40,7 @@ services:
     image: db
     container_name: db
     build: requirements/mariadb
-    #args a mettre ?
+    #args a mettre ? (d'apres ton sujet ces arguments sont a mettre dans le fichier .env je crois... je me souviens qu'ils parlaient en tout cas du mot-de-passe root de la base de donnees qui ne doit pas se retrouver ici)
     #equivalent chez nico
       # contexte: requirements/mariadb
       # args:

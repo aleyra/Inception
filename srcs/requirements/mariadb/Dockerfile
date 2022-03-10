@@ -14,6 +14,7 @@ RUN		mkdir -p /var/www/html/phpmyadmin /var/www/html/wordpress \
 		&& service mysql start \
 		&& sh mysql_install.sh \
 		&& mysql -u root < base.sql \
+		&& echo youpi \
 		&& mysql -u root < /var/www/html/phpmyadmin/sql/create_tables.sql \
 # nettoyage
 		&& rm -rf base.sql mysql_install.sh \

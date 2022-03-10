@@ -45,7 +45,7 @@ services:
         - DB_HOST=${DB_HOST}
         - DB_USER=${MYSQL_USER}
         - DB_PSW=${MYSQL_PASSWORD}
-        - DB_ROOT_PSW=${MYSQL_ROOT_PASSWORD}
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         - DB_NAME=${DB_NAME}
     volumes:
       - vol_db

@@ -9,7 +9,7 @@ RUN	apt-get -y update && apt-get -y upgrade \
 		&& mkdir -p /var/www/html/phpmyadmin /var/www/html/wordpress \
 		&& tar xvf phpMyAdmin-5.0.4-all-languages.tar.gz --strip-components=1 -C /var/www/html/phpmyadmin
 # config de mySQL
-COPY 50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN cp -f 50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 ARG	DB_HOST=${DB_HOST}
 ARG DB_USER=${MYSQL_USER}
 ARG DB_PSW=${MYSQL_PASSWORD}

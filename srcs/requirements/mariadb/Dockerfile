@@ -15,13 +15,13 @@ ARG DB_USER=${MYSQL_USER}
 ARG DB_PSW=${MYSQL_PASSWORD}
 ARG MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 ARG DB_NAME=${DB_NAME}
-RUN	sh mysql_install.sh \
-		&& mysql -u root < base.sql \
+COPY 50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN mysql -u root < base.sql \
 		&& echo youpi \
 #ca boude ici echo a suppr
 		&& mysql -u root < /var/www/html/phpmyadmin/sql/create_tables.sql \
 # nettoyage
-		&& rm -rf base.sql mysql_install.sh \
+		&& rm -rf base.sql mysql_install.sh 50-server.cnf\
 		&& rm -rf phpMyAdmin-5.0.4-all-languages.tar.gz phpmyadmin.keyring
 
 EXPOSE	3306

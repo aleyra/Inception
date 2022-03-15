@@ -7,7 +7,7 @@ RUN	apt-get -y update && apt-get -y upgrade \
 		&& apt-get -y install gnupg wget expect mariadb-server mariadb-client \
 		&& wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-languages.tar.gz \
 		&& mkdir -p /var/www/html/phpmyadmin /var/www/html/wordpress \
-		&& tar xvf phpMyAdmin-5.0.4-all-languages.tar.gz --strip-components=1 -C /var/www/html/phpmyadmin \
+		&& tar xvf phpMyAdmin-5.0.4-all-languages.tar.gz --strip-components=1 -C /var/www/html/phpmyadmin
 # config de mySQL
 COPY 50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 ARG	DB_HOST=${DB_HOST}

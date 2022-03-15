@@ -11,10 +11,10 @@ RUN	apt-get -y update && apt-get -y upgrade \
 # config de mySQL
 RUN cp -f 50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 ARG	DB_HOST=${DB_HOST}
-ARG DB_USER=${MYSQL_USER}
-ARG DB_PSW=${MYSQL_PASSWORD}
-ARG MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-ARG DB_NAME=${DB_NAME}
+ARG	DB_USER=${MYSQL_USER}
+ARG	DB_PSW=${MYSQL_PASSWORD}
+ARG	MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+ARG	DB_NAME=${DB_NAME}
 RUN service mysql start \
 		&& mysql -u root < base.sql \
 		&& echo youpi \

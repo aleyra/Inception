@@ -14,7 +14,7 @@ ARG	DB_HOST=${DB_HOST}
 ARG	DB_USER=${MYSQL_USER}
 ARG	DB_PSW=${MYSQL_PASSWORD}
 ARG	MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-ARG	DB_NAME
+ARG	DB_NAME=${DB_NAME}
 RUN service mysql start \
 		&& mysql -u root < base.sql \
 		&& echo youpi \

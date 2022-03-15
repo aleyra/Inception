@@ -42,11 +42,11 @@ services:
     build:
       context: requirements/mariadb
       args:
-        - DB_HOST=${DB_HOST}
-        - DB_USER=${MYSQL_USER}
-        - DB_PSW=${MYSQL_PASSWORD}
-        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-        - DB_NAME=${DB_NAME}
+        - DB_HOST: ${DB_HOST}
+        - DB_USER: ${MYSQL_USER}
+        - DB_PSW: ${MYSQL_PASSWORD}
+        - MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        - DB_NAME: ${DB_NAME}
     volumes:
       - vol_db
     env_file:

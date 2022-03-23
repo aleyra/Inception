@@ -1,5 +1,5 @@
 FROM    debian:buster
-LABEL    maintainer="lburnet@student.42lyon.fr"
+LABEL   maintainer="lburnet@student.42lyon.fr"
 
 COPY ./files/ .
 

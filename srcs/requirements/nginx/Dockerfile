@@ -18,4 +18,3 @@ EXPOSE	9000
 EXPOSE	443
 
 CMD ["/usr/sbin/nginx"]
-CMD ["screen -S session"]

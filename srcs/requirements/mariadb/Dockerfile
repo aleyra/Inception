@@ -28,6 +28,4 @@ RUN service mysql start \
 		&& rm -rf base.sh mysql_install.sh 50-server.cnf config.inc.php \
 		&& rm -rf phpMyAdmin-5.0.4-all-languages.tar.gz phpmyadmin.keyring
 
-EXPOSE	3306
-
 ENTRYPOINT [mysql -u root]

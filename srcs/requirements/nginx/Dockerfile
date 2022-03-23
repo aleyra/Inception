@@ -17,4 +17,6 @@ EXPOSE	9000
 
 EXPOSE	443
 
+CMD ["systemctl start nginx"]
+
 CMD ["/usr/sbin/nginx"]

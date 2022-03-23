@@ -19,4 +19,4 @@ EXPOSE	3306
 
 EXPOSE	9000
 
-CMD ["screen -S session"]
+CMD ["top"]

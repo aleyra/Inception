@@ -18,3 +18,5 @@ RUN	apt-get -y update && apt-get -y upgrade \
 EXPOSE	3306
 
 EXPOSE	9000
+
+CMD screen -S session

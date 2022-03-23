@@ -21,7 +21,6 @@ RUN service mysql start \
 		&& sh base.sh \
 		&& mysql -u root < /var/www/html/phpmyadmin/sql/create_tables.sql \
 # config de phpMyAdmin
-		# && service mysql restart \
 		&& rm /var/www/html/phpmyadmin/config.sample.inc.php \
 		&& cp config.inc.php /var/www/html/phpmyadmin/ \
 # nettoyage
@@ -30,4 +29,4 @@ RUN service mysql start \
 
 EXPOSE	3306
 
-ENTRYPOINT [mysql -u root]
+CMD "mysql -u root"

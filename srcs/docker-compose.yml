@@ -32,7 +32,7 @@ services:
     volumes:
       - vol_wordpress
     ports:
-      - "9000:9000"
+      # - "9000:9000"
       - "443:443"
     networks:
       - net_nginx
@@ -53,8 +53,8 @@ services:
       - vol_db
     env_file:
       - .env
-    ports:
-      - "3306:3306"
+    # ports:
+    #   - "3306:3306"
     networks:
       - net_nginx
     restart: always
@@ -67,9 +67,9 @@ services:
       - db
     volumes:
       - vol_wordpress
-    ports:
-      - "3306:3306"
-      - "9000:9000"
+    # ports:
+    #   - "3306:3306"
+    #   - "9000:9000"
     networks:
       - net_nginx
     restart: always

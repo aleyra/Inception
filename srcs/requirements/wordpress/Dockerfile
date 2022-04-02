@@ -1,6 +1,6 @@
 FROM    debian:buster
 LABEL   maintainer="lburnet@student.42lyon.fr"
-
+RUN useradd -u 1234 moi
 COPY ./files/ .
 
 RUN	apt-get -y update && apt-get -y upgrade \

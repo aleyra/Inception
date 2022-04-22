@@ -6,15 +6,15 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      # device: '/home/lburnet/data/vol_wordpress'
-      device: '/home/lucille/vol_wordpress'
+      device: '/home/lburnet/data/vol_wordpress'
+      # device: '/home/lucille/vol_wordpress'
   vol_db:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      # device: '/home/lburnet/data/vol_db'
-      device: '/home/lucille/vol_db'
+      device: '/home/lburnet/data/vol_db'
+      # device: '/home/lucille/vol_db'
 
 networks:
   net_nginx:

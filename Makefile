@@ -8,6 +8,18 @@ up :
 down :
 	docker-compose down && cd ..
 
+stop :
+	docker stop $$(docker ps -qa)
+
+rm :
+	docker rm $$(docker ps -qa)
+
+rmi :
+	docker rmi -f $$(docker image ls -qa)
+
+vol :
+	docker volume rm $$(docker volume ls -q)
+
 clean :	
 	docker stop $$(docker ps -qa)
 	docker rm $$(docker ps -qa)

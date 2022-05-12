@@ -62,7 +62,19 @@ services:
   wpphp:
     image: wordpressphp
     container_name: wordpressphp
-    build: ./requirements/wordpress
+    build: 
+      context: ./requirements/wordpress
+      args:
+        DB_NAME: ${DB_NAME}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        DOMAIN_NAME: ${DOMAIN_NAME}
+        ADMIN_NAME: ${ADMIN_NAME}
+        ADMIN_PSW: ${ADMIN_PSW}
+        ADMIN_MAIL: ${ADMIN_MAIL}
+        USER_NAME: ${USER_NAME}
+        USER_MAIL: ${USER_MAIL}
+        USER_PSW: ${USER_PSW}
     depends_on:
       - db
     volumes:

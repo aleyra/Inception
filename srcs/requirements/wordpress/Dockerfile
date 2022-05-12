@@ -5,7 +5,19 @@ LABEL maintainer="lburnet@student.42lyon.fr"
 
 COPY ./files/ .
 
+ARG DB_NAME
+ARG MYSQL_USER
+ARG MYSQL_PASSWORD
+ARG DOMAIN_NAME
+ARG ADMIN_NAME
+ARG ADMIN_PSW
+ARG ADMIN_MAIL
+ARG USER_NAME
+ARG USER_MAIL
+ARG USER_PSW
+
 ADD	https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar /
+ADD https://fr.wordpress.org/wordpress-5.9.3-fr_FR.tar.gz /
 
 RUN	apt-get -y update && apt-get -y upgrade \
 		&& apt-get -y install sudo vim php-fpm php-mysql php-cli \
@@ -13,15 +25,17 @@ RUN	apt-get -y update && apt-get -y upgrade \
 		&& cp wp-cli.phar /usr/local/bin/wp \
 		&& chmod +x /usr/local/bin/wp \
 #config de wordpress
-		&& mkdir -p /var/www/html/wordpress \
+		&& mkdir -p /var/www/html \
 		&& chown -R www-data:www-data /var/www/html \
-		&& cd /var/www/html/wordpress \
-		&& service php7.3-fpm start 
-RUN		wp core download <https://fr.wordpress.org/wordpress-5.9.3-fr_FR.tar.gz> --allow-root
-		RUN sh cmds.sh \
-		&& service php7.3-fpm stop \
-#nettoyage
- 		&& rm -rf cmds.sh wp-cli.phar
+		&& tar -xvf wordpress-5.9.3-fr_FR.tar.gz -C /var/www/html \
+#nettoyage 1
+		&& rm -rf wp-cli.phar wordpress-5.9.3-fr_FR.tar.gz
+#config de wordpress suite
+		RUN service php7.3-fpm start 
+		RUN sh cmds.sh 
+		RUN service php7.3-fpm stop \
+#nettoyage 2
+ 		&& rm -rf cmds.sh
 
 EXPOSE	9000
 

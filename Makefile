@@ -3,7 +3,7 @@
 all :	up
 
 up :
-	cd ./srcs && docker compose up -d
+	cd ./srcs && docker-compose up -d
 
 down :
 	docker-compose down && cd ..

@@ -30,7 +30,7 @@ services:
     depends_on:
       - wpphp
     volumes:
-      - vol_wordpress
+      - vol_wordpress:/var/www/html
     ports:
       # - "9000:9000"
       - "443:443"
@@ -50,7 +50,7 @@ services:
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         DB_NAME: ${DB_NAME}
     volumes:
-      - vol_db
+      - vol_db:/var/lib/mysql
     env_file:
       - .env
     # ports:
@@ -78,7 +78,7 @@ services:
     depends_on:
       - db
     volumes:
-      - vol_wordpress
+      - vol_wordpress:/var/www/html
     # ports:
     #   - "3306:3306"
     #   - "9000:9000"

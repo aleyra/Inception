@@ -1,0 +1,3 @@
+Error response from daemon: bridge is a pre-defined network and cannot be removed
+Error response from daemon: host is a pre-defined network and cannot be removed
+Error response from daemon: none is a pre-defined network and cannot be removed

@@ -32,7 +32,7 @@ RUN	apt-get -y update && apt-get -y upgrade \
 		&& rm -rf wp-cli.phar wordpress-5.9.3-fr_FR.tar.gz
 #config de wordpress suite
 		RUN service php7.3-fpm start
-		&& cd /var/www/html/wordpress \
+		RUN cd /var/www/html/wordpress \
 		&& cp wp-config-sample.php wp-config.php \
 		&& sed -i "s/votre_nom_de_bdd/$DB_NAME/" ./wp-config.php \
 		&& sed -i "s/votre_utilisateur_de_bdd/$MYSQL_USER/" ./wp-config.php \

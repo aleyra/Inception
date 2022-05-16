@@ -1,7 +1,9 @@
 .PHONY: all up down clean re
 
-all :	up
-	
+all :	
+	mkdir ../data
+	mkdir dev
+	make up
 
 up :
 	cd ./srcs && docker-compose up -d
@@ -29,10 +31,12 @@ clean :
 	docker rm $$(docker ps -qa)
 	docker rmi -f $$(docker image ls -qa)
 	docker volume rm $$(docker volume ls -q)
-	# docker network rm $$(docker network ls -q) 2>dev/null
+	docker network rm $$(docker network ls -q) 2>dev/null
 
 fclean : clean down
 	docker-compose stop
 	docker-compose rm -f
+	rm -r ../data
+	rm dev
 
-re : clean all
+re : clean up

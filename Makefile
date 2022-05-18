@@ -9,7 +9,8 @@ all :
 	make up
 
 up :
-	cd ./srcs && docker-compose up -d
+	cd ./srcs && docker-compose up -d --build
+	#enlever le --build sur mac et vm
 
 down :
 	docker-compose down && cd ..

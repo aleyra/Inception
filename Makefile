@@ -2,6 +2,8 @@
 
 all :	
 	mkdir ../data
+	mkdir ../data/vol_wordpress
+	mkdir ../data/vol_db
 	mkdir dev
 	touch dev/null
 	make up

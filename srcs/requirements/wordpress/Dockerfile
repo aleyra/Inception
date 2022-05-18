@@ -34,8 +34,8 @@ RUN	apt-get -y update && apt-get -y upgrade \
 		RUN service php7.3-fpm start
 		RUN cd /var/www/html/wordpress \
 		&& cp wp-config-sample.php wp-config.php \
-		&& sed -i "s/votre_nom_de_bdd/$DB_NAME/" ./wp-config.php \
-		&& sed -i "s/votre_utilisateur_de_bdd/$MYSQL_USER/" ./wp-config.php \
+		&& sed -i "s/votre_nom_de_bdd/DB_NAME/" ./wp-config.php \
+		&& sed -i "s/votre_utilisateur_de_bdd/${MYSQL_USER}/" ./wp-config.php \
 		&& sed -i "s/votre_mdp_de_bdd/$MYSQL_PASSWORD/" ./wp-config.php \
 		&& sed -i "s/localhost/mariadb:3306/" ./wp-config.php
 	# wp core config --allow-root --dbname=$DB_NAME --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbprefix=wp_ 2>res1

@@ -15,13 +15,22 @@ ARG	DB_USER=${DB_USER}
 ARG	DB_PSW=${DB_PSW}
 ARG	MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 ARG	DB_NAME=${DB_NAME}
-RUN		sh base.sh 
+# RUN		sh base.sh 
 RUN service mysql start \
 		&& mysql -u root \
 		&& exit \
 		# && sh base.sh \
 		# && mysql -u root < /var/www/html/phpmyadmin/sql/create_tables.sql \
-		&& mysql < base_wp.sql
+		# && mysql < base_wp.sql
+		# && mariadb -u root -e \
+		# "CREATE DATABASE ${DB_NAME};\
+		# CREATE USER ${DB_USER}@'%' IDENTIFIED BY '${DB_PSW}';\
+		# GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO ${DB_USER}@'%';\
+		# ALTER USER root@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';"
+		&& mysql -e "create database if not exists '${DB_NAME}';\
+alter user 'root'@'localhost' identified by '${MYSQL_ROOT_PASSWORD}';\
+grant all privileges on '${DB_NAME}'.* to '${DB_USER}'@'%' identified by '${DB_PSW}';\
+flush privileges;"
 		RUN service mysql stop \
 # config de phpMyAdmin
 		&& rm /var/www/html/phpmyadmin/config.sample.inc.php \

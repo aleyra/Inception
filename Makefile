@@ -37,10 +37,10 @@ clean :
 	docker volume rm $$(docker volume ls -q)
 	#docker network rm $$(docker network ls -q) 2>dev/null
 
-fclean : clean down
-	docker-compose stop
-	docker-compose rm -f
-	rm -r ../data
+fclean : clean
+	#docker-compose stop
+	#docker-compose rm -f
+	rm -rf ../data
 	rm -r dev
 
 re : clean up

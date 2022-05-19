@@ -1,5 +1,3 @@
-touch base_wp.sql
-
 echo "CREATE DATABASE IF NOT EXISTS '${DB_NAME}';
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;

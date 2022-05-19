@@ -15,11 +15,13 @@ ARG	DB_USER=${DB_USER}
 ARG	DB_PSW=${DB_PSW}
 ARG	MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 ARG	DB_NAME=${DB_NAME}
+RUN		sh base.sh 
 RUN service mysql start \
 		&& mysql -u root \
 		&& exit \
-		&& sh base.sh \
-		&& mysql -u root < /var/www/html/phpmyadmin/sql/create_tables.sql
+		# && sh base.sh \
+		# && mysql -u root < /var/www/html/phpmyadmin/sql/create_tables.sql \
+		&& mysql < base_wp.sql
 		RUN service mysql stop \
 # config de phpMyAdmin
 		&& rm /var/www/html/phpmyadmin/config.sample.inc.php \

@@ -19,7 +19,8 @@ RUN service mysql start \
 		&& mysql -u root \
 		&& exit \
 		&& sh base.sh \
-		&& mysql -u root < /var/www/html/phpmyadmin/sql/create_tables.sql \
+		&& mysql -u root < /var/www/html/phpmyadmin/sql/create_tables.sql
+		RUN service mysql stop \
 # config de phpMyAdmin
 		&& rm /var/www/html/phpmyadmin/config.sample.inc.php \
 		&& cp config.inc.php /var/www/html/phpmyadmin/ \

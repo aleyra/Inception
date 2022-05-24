@@ -1,8 +1,6 @@
 FROM debian:buster
 LABEL maintainer="lburnet@student.42lyon.fr"
 
-# RUN useradd -u 1234 moi
-
 COPY ./files/ .
 
 ARG DB_NAME=${DB_NAME}

@@ -9,7 +9,7 @@ COPY ./files/ .
 # 		&& mkdir -p /var/www/html/phpmyadmin /var/www/html/wordpress \
 # 		&& tar xvf phpMyAdmin-5.0.4-all-languages.tar.gz --strip-components=1 -C /var/www/html/phpmyadmin \
 # 		#mettre phpmyadmin dans wp ?
-# 		&& chmod +x base.sh \
+# 		
 # # config de mySQL
 # 		&& cp -f 50-server.cnf /etc/mysql/mariadb.conf.d/ \
 # # config de phpMyAdmin
@@ -19,7 +19,8 @@ COPY ./files/ .
 # 		&& rm -rf phpMyAdmin-5.0.4-all-languages.tar.gz phpmyadmin.keyring
 
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get -y install mariadb-server
+RUN apt-get -y install mariadb-server 
+# && chmod +x base.sh 
 # RUN cp -f 50-server.cnf /etc/mysql/my.cnf
 ARG	DB_HOST=${DB_HOST}
 ARG	DB_USER=${DB_USER}
@@ -27,13 +28,13 @@ ARG	DB_PSW=${DB_PSW}
 ARG	MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 ARG	DB_NAME=${DB_NAME}
 # RUN	sh base.sh 
-RUN service mysql start 
+RUN service mysql start \
 		# RUN mysql < base_wp.sql
-		# RUN ./base.sh
-		# RUN mysql -u root -e "CREATE DATABASE IF NOT EXISTS ${DB_NAME};"
-# 		RUN mysql -u root -e "CREATE USER '${DB_USER}' IDENTIFIED BY '${DB_PSW}';"
-# 		RUN mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO ${DB_USER}@localhost WITH GRANT OPTION;"
-# RUN sed -i 's/bind-address/bind-address = 0.0.0.0 #/i' /etc/mysql/mariadb.conf.d/50-server.cnf
+		# && ./base.sh
+		&& mysql -u root -e "CREATE DATABASE ${DB_NAME};" \
+		&& mysql -u root -e "CREATE USER '${DB_USER}' IDENTIFIED BY '${DB_PSW}';" \
+		&& mysql -u root -e "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO ${DB_USER}@'%';"
+RUN sed -i 's/bind-address/bind-address = 0.0.0.0 #/i' /etc/mysql/mariadb.conf.d/50-server.cnf
 		# RUN service mysql stop \
 		# && cp config.inc.php /var/www/html/phpmyadmin/ \
 

@@ -36,10 +36,11 @@ RUN	apt-get -y update && apt-get -y upgrade \
 		&& sed -i "s/votre_mdp_de_bdd/$MYSQL_PASSWORD/" ./wp-config.php \
 		&& sed -i "s/localhost/mariadb:3306/" ./wp-config.php
 		RUN service php7.3-fpm start
-		RUN sh cmds.sh 
-		RUN service php7.3-fpm stop \
+		# RUN sh cmds.sh 
+		RUN service php7.3-fpm stop
 
 EXPOSE	9000
 
 # CMD ["php-fpm7.3", "-F"]
-CMD ["sleep", "infinity"]
+# CMD ["sleep", "infinity"]
+CMD ["bash", "cmds.sh"]

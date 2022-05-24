@@ -28,6 +28,7 @@ RUN	apt-get -y update && apt-get -y upgrade \
 		&& mkdir -p /var/www/html \
 		&& chown -R www-data:www-data /var/www/html \
 		&& tar -xvf wordpress-5.9.3-fr_FR.tar.gz -C /var/www/html \
+		&& cp www.conf /etc/php/7.3/fpm/pool.d/www.conf \
 #nettoyage 1
 		&& rm -rf wp-cli.phar wordpress-5.9.3-fr_FR.tar.gz
 #config de wordpress suite
@@ -46,4 +47,5 @@ RUN	apt-get -y update && apt-get -y upgrade \
 
 EXPOSE	9000
 
-CMD ["php-fpm7.3", "-F"]
+# CMD ["php-fpm7.3", "-F"]
+CMD ["sleep", "infinity"]

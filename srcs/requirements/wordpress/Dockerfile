@@ -28,22 +28,16 @@ RUN	apt-get -y update && apt-get -y upgrade \
 		&& mkdir -p /var/www/html \
 		&& chown -R www-data:www-data /var/www/html \
 		&& tar -xvf wordpress-5.9.3-fr_FR.tar.gz -C /var/www/html \
-		&& cp www.conf /etc/php/7.3/fpm/pool.d/www.conf \
-#nettoyage 1
-		&& rm -rf wp-cli.phar wordpress-5.9.3-fr_FR.tar.gz
-#config de wordpress suite
-		RUN service php7.3-fpm start
+		&& cp www.conf /etc/php/7.3/fpm/pool.d/www.conf 
 		RUN cd /var/www/html/wordpress \
 		&& cp wp-config-sample.php wp-config.php \
 		&& sed -i "s/votre_nom_de_bdd/${DB_NAME}/" ./wp-config.php \
 		&& sed -i "s/votre_utilisateur_de_bdd/${MYSQL_USER}/" ./wp-config.php \
 		&& sed -i "s/votre_mdp_de_bdd/$MYSQL_PASSWORD/" ./wp-config.php \
 		&& sed -i "s/localhost/mariadb:3306/" ./wp-config.php
-	# wp core config --allow-root --dbname=$DB_NAME --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbprefix=wp_ 2>res1
+		RUN service php7.3-fpm start
 		RUN sh cmds.sh 
 		RUN service php7.3-fpm stop \
-#nettoyage 2
- 		&& rm -rf cmds.sh
 
 EXPOSE	9000
 

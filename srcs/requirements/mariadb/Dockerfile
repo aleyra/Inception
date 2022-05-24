@@ -1,8 +1,6 @@
 FROM    debian:buster
 LABEL    maintainer="lburnet@student.42lyon.fr"
 
-COPY ./files/ .
-
 RUN apt-get update && apt-get upgrade -y \
 && apt-get -y install mariadb-server 
 

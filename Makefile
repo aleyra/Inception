@@ -4,16 +4,16 @@ all :
 	mkdir ../data
 	mkdir ../data/vol_wordpress
 	mkdir ../data/vol_db
-	mkdir dev
+	mkdir -p dev
 	touch dev/null
 	make up
 
 up :
 	cd ./srcs && docker-compose up -d --build
-	#enlever le --build sur mac et vm
 
 down :
-	docker-compose down && cd ..
+	cd .. && docker-compose down
+	#or docker-compose -f PATH && cd ..
 
 stop :
 	docker stop $$(docker ps -qa)
@@ -37,10 +37,10 @@ clean :
 	docker volume rm $$(docker volume ls -q)
 	#docker network rm $$(docker network ls -q) 2>dev/null
 
-fclean : clean
+fclean : clean 
 	#docker-compose stop
 	#docker-compose rm -f
-	rm -rf ../data
-	rm -r dev
+	sudo rm -rf ../data
+	rm -rf dev
 
-re : clean up
+re : fclean all

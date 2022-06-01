@@ -25,7 +25,7 @@ services:
     image: nginx
     container_name: nginx
     build: ./requirements/nginx
-    # depends_on:
+    # depends_on: #a remettre
     #   - wpphp
     volumes:
       - vol_wordpress:/var/www/html

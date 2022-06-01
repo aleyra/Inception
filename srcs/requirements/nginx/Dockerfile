@@ -8,8 +8,10 @@ RUN	apt-get -y update && apt-get -y upgrade \
 		&& mkdir -p /etc/nginx/certificate \
 		&& mkdir -p /etc/nginx/nginx.d \
 		&& cp nginx.conf /etc/nginx/nginx.d/my.conf \
+		&& chown -R www-data:www-data /var/www/html \
+		&& chmod -R 755 /var/www/html \
 		&& openssl req -new -newkey rsa:4096 -x509 -days 365 -nodes -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=lburnet.42.fr" -out /etc/nginx/certificate/lburnet.42.fr-certificate.crt -keyout /etc/nginx/certificate/lburnet.42.fr.key
 
 
-# CMD ["nginx", "-g", "daemon off;"]
-CMD ["sleep", "infinity"]
+CMD ["nginx", "-g", "daemon off;"]
+# CMD ["sleep", "infinity"]

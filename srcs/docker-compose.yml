@@ -7,14 +7,12 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/home/lburnet/data/vol_wordpress'
-      # device: '/home/lucille/data/vol_wordpress'
   vol_db:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
       device: '/home/lburnet/data/vol_db'
-      # device: '/home/lucille/data/vol_db'
 
 networks:
   net_nginx:
@@ -27,12 +25,14 @@ services:
     image: nginx
     container_name: nginx
     build: ./requirements/nginx
-    depends_on:
-      - wpphp
+    # depends_on:
+    #   - wpphp
     volumes:
       - vol_wordpress:/var/www/html
     ports:
       # - "9000:9000"
+      - "80:80"
+      #80:80 a enlever a la fin
       - "443:443"
     networks:
       - net_nginx

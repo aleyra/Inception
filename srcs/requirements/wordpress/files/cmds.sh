@@ -7,4 +7,5 @@
 	wp user create $USER_NAME $USER_MAIL --role='editor' --user_pass=$USER_PSW --allow-root 2>res3
 
 # fi
-php-fpm7.3 -F
+# php-fpm7.3 -F
+sleep infinity

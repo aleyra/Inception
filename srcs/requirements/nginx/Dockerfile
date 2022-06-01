@@ -6,7 +6,8 @@ COPY ./files/ .
 RUN	apt-get -y update && apt-get -y upgrade \
 		&& apt-get -y install nginx openssl \
 		&& mkdir -p /etc/nginx/certificate \
-		&& cp nginx.conf /etc/nginx/sites-available/default \
+		&& mkdir -p /etc/nginx/nginx.d \
+		&& cp nginx.conf /etc/nginx/nginx.d/my.conf \
 		&& openssl req -new -newkey rsa:4096 -x509 -days 365 -nodes -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=lburnet.42.fr" -out /etc/nginx/certificate/lburnet.42.fr-certificate.crt -keyout /etc/nginx/certificate/lburnet.42.fr.key
 
 

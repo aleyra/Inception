@@ -31,7 +31,7 @@ services:
       - vol_wordpress:/var/www/html
     ports:
       # - "9000:9000"
-      - "80:80"
+      # - "80:80"
       #80:80 a enlever a la fin
       - "443:443"
     networks:

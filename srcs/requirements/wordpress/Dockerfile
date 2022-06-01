@@ -24,9 +24,10 @@ RUN	apt-get -y update && apt-get -y upgrade \
 		&& chmod +x /usr/local/bin/wp \
 #config de wordpress
 		&& mkdir -p /var/www/html \
-		&& chown -R www-data:www-data /var/www/html \
+		#ca marche jusque la
 		&& tar -xvf wordpress-5.9.3-fr_FR.tar.gz -C /var/www/html \
-		&& cp www.conf /etc/php/7.3/fpm/pool.d/www.conf 
+		&& cp www.conf /etc/php/7.3/fpm/pool.d/www.conf \
+		&& chown -R www-data:www-data /var/www/html 
 		RUN cd /var/www/html/wordpress \
 		&& cp wp-config-sample.php wp-config.php \
 		&& sed -i "s/votre_nom_de_bdd/${DB_NAME}/" ./wp-config.php \

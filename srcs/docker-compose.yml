@@ -77,8 +77,8 @@ services:
         USER_PSW: ${USER_PSW}
     depends_on:
       - db
-    volumes:
-      - vol_wordpress:/var/www/html
+    # volumes:
+    #   - vol_wordpress:/var/www/html
     # ports:
     #   - "3306:3306"
     #   - "9000:9000"

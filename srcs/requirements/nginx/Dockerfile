@@ -6,8 +6,7 @@ COPY ./files/ .
 RUN	apt-get -y update && apt-get -y upgrade \
 		&& apt-get -y install nginx openssl \
 		&& mkdir -p /etc/nginx/certificate \
-		&& mkdir -p /etc/nginx/nginx.d \
-		# && cp nginx.conf /etc/nginx/nginx.d/my.conf \
+
 		&& rm -rf /etc/nginx/sites-available/default \
 		&& cp nginx.conf /etc/nginx/sites-available/default \
 		&& chown -R www-data:www-data /var/www/html \
@@ -16,4 +15,4 @@ RUN	apt-get -y update && apt-get -y upgrade \
 
 
 CMD ["nginx", "-g", "daemon off;"]
-# CMD ["sleep", "infinity"]
+

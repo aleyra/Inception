@@ -9,5 +9,7 @@
 	# /var/www/html/wordpress# wp core install --allow-root --url='lburnet.42.fr' --title="Inception" --admin_user=nimda --admin_password=bouh --admin_email=nimda@mail.com
 	wp user create $USER_NAME $USER_MAIL --role='editor' --user_pass=$USER_PSW --allow-root 2>res3
 # fi
-# php-fpm7.3 -F
-sleep infinity
+service php7.3-fpm start
+service php7.3-fpm stop
+php-fpm7.3 -F
+# sleep infinity

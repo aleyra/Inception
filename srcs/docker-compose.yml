@@ -25,8 +25,8 @@ services:
     image: nginx
     container_name: nginx
     build: ./requirements/nginx
-    # depends_on: #a remettre
-    #   - wpphp
+    depends_on:
+      - wordpress
     volumes:
       - vol_wordpress:/var/www/html
     ports:
@@ -38,9 +38,9 @@ services:
       - net_nginx
     restart: always
 
-  db:
-    image: db
-    container_name: db
+  mariadb:
+    image: mariadb
+    container_name: mariadb
     build:
       context: requirements/mariadb
       args:
@@ -59,9 +59,9 @@ services:
       - net_nginx
     restart: always
 
-  wpphp:
-    image: wordpressphp
-    container_name: wordpressphp
+  wordpress:
+    image: wordpress
+    container_name: wordpress
     build: 
       context: ./requirements/wordpress
       args:
@@ -75,10 +75,14 @@ services:
         USER_NAME: ${USER_NAME}
         USER_MAIL: ${USER_MAIL}
         USER_PSW: ${USER_PSW}
+        DB_HOST: ${DB_HOST}
+        DB_NAME: ${DB_NAME}
+    env_file:
+      - .env
     depends_on:
-      - db
-    # volumes:
-    #   - vol_wordpress:/var/www/html
+      - mariadb
+    volumes:
+      - vol_wordpress:/var/www/html
     # ports:
     #   - "3306:3306"
     #   - "9000:9000"

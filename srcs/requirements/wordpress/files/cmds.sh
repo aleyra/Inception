@@ -13,7 +13,7 @@ cp wp-config-sample.php wp-config.php
 sed -i "s/votre_nom_de_bdd/${DB_NAME}/" ./wp-config.php
 sed -i "s/votre_utilisateur_de_bdd/${MYSQL_USER}/" ./wp-config.php
 sed -i "s/votre_mdp_de_bdd/$MYSQL_PASSWORD/" ./wp-config.php
-sed -i "s/localhost/mariadb:3306/" ./wp-config.php
+sed -i "s/localhost/${DB_HOST}/" ./wp-config.php
 echo haha
 ls
 

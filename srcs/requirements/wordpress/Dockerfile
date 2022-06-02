@@ -13,6 +13,8 @@ ARG ADMIN_MAIL=${ADMIN_MAIL}
 ARG USER_NAME=${USER_NAME}
 ARG USER_MAIL=${USER_MAIL}
 ARG USER_PSW=${USER_PSW}
+ARG DB_HOST=${DB_HOST}
+ARG DB_NAME=${DB_NAME}
 
 ADD	https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar /
 # ADD https://fr.wordpress.org/wordpress-5.9.3-fr_FR.tar.gz /
